@@ -11,7 +11,7 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
+	<footer id="colophon" class="site-footer" style="background: #f9f9f9;">
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'wordpresscdx' ) ); ?>">
 				<?php
