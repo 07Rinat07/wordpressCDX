@@ -24,8 +24,17 @@ function wordpresscdx_enqueue_scripts(){
 }
 add_action('wp_enqueue_scripts', 'wordpresscdx_enqueue_scripts' );
 
+// добавляется класс и классы в массив для всех страниц/можно сделать условие
+function wordpresscdx_body_class($classes){
+	if(is_front_page()){
+		$classes[] = 'main_class';
+	} else if(is_singular()){
+		$classes[] = 'extra_class';
+	}
 
-
+	return $classes;
+}
+add_filter('body_class', 'wordpresscdx_body_class');
 
 
 
