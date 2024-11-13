@@ -24,18 +24,15 @@ function wordpresscdx_enqueue_scripts(){
 }
 add_action('wp_enqueue_scripts', 'wordpresscdx_enqueue_scripts' );
 
-// добавляется класс и классы в массив для всех страниц/можно сделать условие
-function wordpresscdx_body_class($classes){
-	if(is_front_page()){
-		$classes[] = 'main_class';
-	} else if(is_singular()){
-		$classes[] = 'extra_class';
-	}
 
-	return $classes;
+
+function wordpresscdx_register_menus(){
+	register_nav_menus(array(
+		'header_nav' => 'Header Navigation',    // for example Hard code
+		'footer_nav' => 'Footer Navigation'
+	));
 }
-add_filter('body_class', 'wordpresscdx_body_class');
-
+add_action('after_setup_theme', 'wordpresscdx_register_menus', 0);
 
 
 
@@ -78,12 +75,6 @@ function wordpresscdx_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'menu-1' => esc_html__( 'Primary', 'wordpresscdx' ),
-		)
-	);
 
 	/*
 		* Switch default core markup for search form, comment form, and comments

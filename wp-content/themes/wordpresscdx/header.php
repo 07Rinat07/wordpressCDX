@@ -22,4 +22,18 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
+
+// https://developer.wordpress.org/reference/functions/wp_nav_menu/
+<?php 
+	wp_nav_menu(
+		args: array(
+			'theme_location' => 'header_nav',
+			'menu_class' => 'myclass',
+			'container' => 'div',
+			'fallback_cb' => 'wp_page_menu'
+		)
+	);
+?>
+
 тест 1
