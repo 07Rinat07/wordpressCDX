@@ -26,13 +26,40 @@ add_action('wp_enqueue_scripts', 'wordpresscdx_enqueue_scripts' );
 
 
 
-function wordpresscdx_register_menus(){
+function wordpresscdx_theme_init(){
 	register_nav_menus(array(
 		'header_nav' => 'Header Navigation',    // for example Hard code
 		'footer_nav' => 'Footer Navigation'
 	));
+
+
+	add_theme_support(
+		'html5',
+		array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+			'style',
+			'script',
+		)
+	);
 }
-add_action('after_setup_theme', 'wordpresscdx_register_menus', 0);
+add_action('after_setup_theme', 'wordpresscdx_theme_init', 0);
+
+
+function wordpresscdx_custom_search($form){
+	$form = "html for form";
+
+	return $form;
+}
+add_filter('get_search_form', 'wordpresscdx_custom_search');
+
+
+
+
+
 
 
 
@@ -76,22 +103,7 @@ function wordpresscdx_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 
-	/*
-		* Switch default core markup for search form, comment form, and comments
-		* to output valid HTML5.
-		*/
-	add_theme_support(
-		'html5',
-		array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-			'style',
-			'script',
-		)
-	);
+
 
 	// Set up the WordPress core custom background feature.
 	add_theme_support(

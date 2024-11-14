@@ -24,7 +24,7 @@
 <?php wp_body_open(); ?>
 
 
-// https://developer.wordpress.org/reference/functions/wp_nav_menu/
+
 <?php 
 	wp_nav_menu(
 		args: array(
@@ -34,6 +34,9 @@
 			'fallback_cb' => 'wp_page_menu'
 		)
 	);
+
+
+	get_search_form();
 ?>
 
 тест 1
