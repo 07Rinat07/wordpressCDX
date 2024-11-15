@@ -26,17 +26,18 @@
 
 
 <?php 
-	wp_nav_menu(
-		args: array(
-			'theme_location' => 'header_nav',
-			'menu_class' => 'myclass',
-			'container' => 'div',
-			'fallback_cb' => 'wp_page_menu'
-		)
-	);
 
+//esc_attr() - attributes escape
+//esc_html() - html escape
+//esc_url() - link escape
+//wp_kses() - allowed html escape | 2
+//wp_kses_post() -postt html allowed
+//wp_kses_data() - comments html allowed
+//esc_js() inline js
+//esc_textarea()
 
-	get_search_form();
+$name = 'Alex <a href="#" title="test>"Test</a> aka <strong> Test2</strong>';
+
+echo wp_kses_post($name);
 ?>
 
-тест 1
