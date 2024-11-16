@@ -27,17 +27,13 @@
 
 <?php 
 
-//esc_attr() - attributes escape
-//esc_html() - html escape
-//esc_url() - link escape
-//wp_kses() - allowed html escape | 2
-//wp_kses_post() -postt html allowed
-//wp_kses_data() - comments html allowed
-//esc_js() inline js
-//esc_textarea()
+esc_html__('Hello', 'wordpresscdx');
+esc_html_e('Hello', 'wordpresscdx');
 
-$name = 'Alex <a href="#" title="test>"Test</a> aka <strong> Test2</strong>';
+$city = "Uralsk";
+$country = "Kazahstan";
 
-echo wp_kses_post($name);
+printf(esc_html__('My city is %1$s and my country is %2$s' , 'wordpresscdx'), $city, $country);
+
 ?>
 

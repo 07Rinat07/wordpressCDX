@@ -45,17 +45,9 @@ function wordpresscdx_theme_init(){
 			'script',
 		)
 	);
+	load_theme_textdomain('wordpresscdx', get_template_directory(). '/languages');
 }
 add_action('after_setup_theme', 'wordpresscdx_theme_init', 0);
-
-
-function wordpresscdx_custom_search($form){
-	$form = "html for form";
-
-	return $form;
-}
-add_filter('get_search_form', 'wordpresscdx_custom_search');
-
 
 
 
@@ -76,13 +68,6 @@ if ( ! defined( '_S_VERSION' ) ) {
  * as indicating support for post thumbnails.
  */
 function wordpresscdx_setup() {
-	/*
-		* Make theme available for translation.
-		* Translations can be filed in the /languages/ directory.
-		* If you're building a theme based on wordpressCDX, use a find and replace
-		* to change 'wordpresscdx' to the name of your theme in all the template files.
-		*/
-	load_theme_textdomain( 'wordpresscdx', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
