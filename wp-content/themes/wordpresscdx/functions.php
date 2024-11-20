@@ -13,7 +13,9 @@
  */
 
 function wordpresscdx_enqueue_scripts(){
-	wp_enqueue_style('wordpresscdx-general', src: get_template_directory_uri(). '/assets/css/general.css');
+	
+	wp_enqueue_style('wordpresscdx-general', get_template_directory_uri() . '/assets/css/general.css');
+
 
 	wp_enqueue_script('wordpresscdx-script', get_template_directory_uri(). '/assets/js/script.js', array('jquery'), '1.0', true );
 
