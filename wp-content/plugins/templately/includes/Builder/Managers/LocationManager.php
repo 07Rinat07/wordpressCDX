@@ -49,7 +49,7 @@ class LocationManager {
 		 * Because it should run before elementor
 		 */
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ], 7 );
-		add_action( 'eb_frontend_assets', [ $this, 'enqueue_template_assets' ], 10, 2 );
+		add_action( 'wp_enqueue_scripts', [$this, 'enqueue_template_assets'], 8 );
 	}
 
 	private function set_locations() {
@@ -345,7 +345,7 @@ class LocationManager {
 		}
 	}
 
-	public function enqueue_template_assets( $path, $url ) {
+	public function enqueue_template_assets() {
 		$using_templately_builder = get_query_var( 'using_templately_template' );
 		if ( ($using_templately_builder || TemplateLoader::is_header_footer()) && function_exists( 'templately' ) ) {
 			$template_locations = [ 'header', 'footer', 'archive', 'single' ];
@@ -357,17 +357,7 @@ class LocationManager {
 				$template = array_pop( $template );
 				if ( $template->platform == 'gutenberg' ) {
 					$template = is_array( $template ) ? array_pop( $template ) : $template;
-					if ( class_exists('EbStyleHandler') && ! file_exists( $path . 'eb-style-' . $template->get_main_id() . '.min.css' ) ) {
-						$st   = EbStyleHandler::init();
-						$post = get_post( $template->get_main_id() );
-						$st->eb_write_css_from_content( $post, $post->ID, parse_blocks( $post->post_content ) );
-					}
-					else if ( class_exists('EssentialBlocks\Modules\StyleHandler') && ! file_exists( $path . 'eb-style-' . $template->get_main_id() . '.min.css' ) ) {
-						$st   = StyleHandler::init();
-						$post = get_post( $template->get_main_id() );
-						$st->on_save_post( $template->get_main_id(), $post, true );
-					}
-					wp_enqueue_style( 'templately-' . $location . '-' . $template->get_main_id(), $url . 'eb-style-' . $template->get_main_id() . '.min.css', [], substr( md5( microtime( true ) ), 0, 10 ) );
+					do_action("templately_printed_location", $template->get_main_id(), $location, $template);
 				}
 			}
 		}

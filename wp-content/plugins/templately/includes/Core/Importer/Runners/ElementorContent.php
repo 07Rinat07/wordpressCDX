@@ -95,6 +95,7 @@ class ElementorContent extends BaseRunner {
 
 			if (!empty($data['logo']['id'])) {
 				$settings['site_logo'] = $data['logo'];
+				Utils::backup_option_value( 'site_logo' );
 				$this->origin->update_imported_list('attachment', $data['logo']['id']);
 			} elseif (!empty($data['logo'])) {
 				$settings['site_logo'] = $old_logo;
@@ -106,6 +107,7 @@ class ElementorContent extends BaseRunner {
 					// If the upload was successful, use the new logo, otherwise use the old one
 					if(!empty($site_logo['id'])){
 						$settings['site_logo'] = $site_logo;
+						Utils::backup_option_value( 'site_logo' );
 						$this->origin->update_imported_list('attachment', $site_logo['id']);
 					}
 				}

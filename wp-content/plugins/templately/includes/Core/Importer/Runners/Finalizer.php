@@ -5,6 +5,7 @@ namespace Templately\Core\Importer\Runners;
 
 use Exception;
 use Templately\Core\Importer\Utils\Utils;
+use Templately\Utils\Helper;
 
 class Finalizer extends BaseRunner {
 	private $options       = [];
@@ -109,7 +110,7 @@ class Finalizer extends BaseRunner {
 			}
 
 			if ( $type == 'templates' ) {
-				$this->finalize_imports( $contents );
+				$this->finalize_imports( $contents, $type );
 
 				$processed[] = $type;
 				$this->origin->update_progress( $processed);
@@ -130,7 +131,7 @@ class Finalizer extends BaseRunner {
 					}
 
 					$this->sub_type = $post_type;
-					$this->finalize_imports( $templates );
+					$this->finalize_imports( $templates, $type, $post_type );
 
 					$processed[] = "$type::$post_type";
 					$this->origin->update_progress( $processed);
@@ -162,7 +163,7 @@ class Finalizer extends BaseRunner {
 		}
 	}
 
-	private function finalize_imports( $templates ) {
+	private function finalize_imports( $templates, $type, $post_type = null ) {
 		// Get the processed templates from the session data
 		$processed = $this->origin->get_progress();
 
@@ -177,6 +178,14 @@ class Finalizer extends BaseRunner {
 				if ( ! empty( $this->sub_type ) ) {
 					$path .= $this->sub_type . DIRECTORY_SEPARATOR;
 				}
+
+				if($post_type && isset($this->imported_data[$type]['__attachments'][$post_type][$old_template_id])){
+					$template_settings['__attachments'] = $this->imported_data[$type]['__attachments'][$post_type][$old_template_id];
+				}
+				else if(empty($post_type) && isset($this->imported_data[$type]['__attachments'][$old_template_id])){
+					$template_settings['__attachments'] = $this->imported_data[$type]['__attachments'][$old_template_id];
+				}
+
 				$path          .= "{$old_template_id}.json";
 				$template_json = Utils::read_json_file( $path );
 				$params = $this->origin->get_request_params();

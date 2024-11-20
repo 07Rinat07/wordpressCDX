@@ -106,8 +106,8 @@ class GutenbergContent extends BaseRunner {
 				if ( ! $import ) {
 					$results[ $type ]['failed'][ $id ] = $import;
 				} else {
-					Utils::import_page_settings( $import, $settings );
-					$results[ $type ]['succeed'][ $id ] = $import;
+					Utils::import_page_settings( $import['id'], $settings );
+					$results[ $type ]['succeed'][ $id ] = $import['id'];
 				}
 
 				// Broadcast Log
@@ -118,6 +118,8 @@ class GutenbergContent extends BaseRunner {
 				$progress   = floor( ( 100 * $processed ) / $total );
 				$this->log( $progress, null, 'eventLog' );
 
+
+				$results['__attachments'][$type][ $id ] = isset($import['__attachments']) ? $import['__attachments'] : [];
 				// Add the template to the processed templates and update the session data
 				$processed_templates[] = "$type::$id";
 				$this->origin->update_progress( $processed_templates, [ 'content' => $results ]);
@@ -173,15 +175,13 @@ class GutenbergContent extends BaseRunner {
 
 				$attachments = $this->json->parse_images($json_content['content']);
 
+				$result = [];
 				if (!empty($attachments)) {
-					$manifest_content = &$this->manifest['content'][$type][$id];
-					if(!isset($manifest_content['__attachments'])){
-						$manifest_content['__attachments'] = [];
-					}
-					$manifest_content['__attachments'] = $attachments;
+					$result['__attachments'] = $attachments;
 				}
+				$result['id'] = $inserted;
 
-				return $inserted;
+				return $result;
 			}
 		} catch ( \Exception $e ) {
 			return false;

@@ -56,6 +56,10 @@ class WPImport extends WP_Importer {
 	 * @var string
 	 */
 	private $requested_file_path;
+	/**
+	 * @var string
+	 */
+	private $import_data_key;
 
 	/**
 	 * @var array
@@ -683,6 +687,10 @@ class WPImport extends WP_Importer {
 				continue;
 			}
 
+			if(!empty($post['post_content']) && !empty($post['post_id'])){
+				$post['post_content'] = Utils::import_and_replace_attachments($post['post_content'], $post['post_id']);
+			}
+
 			if ( 'nav_menu_item' === $post['post_type'] ) {
 				$result['succeed'] += $this->process_menu_item( $post );
 				continue;
@@ -1288,8 +1296,6 @@ class WPImport extends WP_Importer {
 		// Make sure the fetch was successful.
 		if ( 200 !== $remote_response_code ) {
 			@unlink( $tmp_file_name );
-			Helper::log($url);
-			Helper::log($remote_response);
 			return new WP_Error( 'import_file_error', sprintf( /* translators: 1: HTTP error message, 2: HTTP error code. */ esc_html__( 'Remote server returned the following unexpected result: %1$s (%2$s)', 'elementor' ), get_status_header_desc( $remote_response_code ), esc_html( $remote_response_code ) ) );
 		}
 
@@ -1675,11 +1681,20 @@ class WPImport extends WP_Importer {
 	public function __construct( $file, array $args = [] ) {
 		parent::__construct();
 
-		$this->requested_file_path = $file;
 		$this->args                = $args;
-		$this->origin              = $args['origin'];
-		$this->origin              = $args['origin'];
-		$this->import_data_key     = 'wp_importer_attributes_' . md5($this->requested_file_path);
+
+		if ( ! empty( $args['json'] ) ) {
+			$this->json = $args['json'];
+		}
+
+		if ( ! empty( $args['origin'] ) ) {
+			$this->origin = $args['origin'];
+		}
+
+		if ( ! empty( $file ) ) {
+			$this->requested_file_path = $file;
+			$this->import_data_key     = 'wp_importer_attributes_' . md5($this->requested_file_path);
+		}
 
 		if ( ! empty( $this->args['fetch_attachments'] ) ) {
 			$this->fetch_attachments = true;

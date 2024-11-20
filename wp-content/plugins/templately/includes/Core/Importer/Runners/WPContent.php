@@ -45,7 +45,8 @@ class WPContent extends BaseRunner {
 
 		$this->import_actions();
 
-		$contents    = $this->manifest['wp-content'];
+		$contents        = $imported_data['wp-content_manifest_content'] ?? $this->manifest['wp-content'];
+		$this->processed = $imported_data['wp-content_processed'] ?? [];
 		$this->total = array_reduce( $contents, function ( $carry, $item ) {
 			return $carry + count( $item );
 		}, 0 );
@@ -55,7 +56,7 @@ class WPContent extends BaseRunner {
 		if(empty($processed_templates)){
 			$this->log( 0 );
 			$processed_templates = ["__started__"];
-			$this->origin->update_progress( $processed_templates);
+			$this->origin->update_progress( $processed_templates, ['wp-content_manifest_content' => $contents]);
 		}
 
 		foreach ( $post_types as $type ) {
@@ -70,6 +71,10 @@ class WPContent extends BaseRunner {
 
 			if ( empty( $import['posts'] ) ) {
 				continue;
+			}
+			if(isset($import['posts']['__attachments'])){
+				$results['wp-content']['__attachments'][ $type ] = $import['posts']['__attachments'];
+				unset($import['posts']['__attachments']);
 			}
 			$results['wp-content'][ $type ] = $import['posts'];
 			$results['terms'][ $type ]      = $import['terms'];
@@ -125,6 +130,7 @@ class WPContent extends BaseRunner {
 		$args = [
 			'fetch_attachments' => true,
 			'origin'            => $this->origin,
+			'json'              => $this->json,
 			'posts'             => Utils::map_old_new_post_ids( $imported_data ),
 			'terms'             => Utils::map_old_new_term_ids( $imported_data ),
 			'taxonomies'        => ! empty( $taxonomies[ $type ] ) ? $taxonomies[ $type ] : [],
@@ -177,6 +183,8 @@ class WPContent extends BaseRunner {
 
 			$type  = $post['post_type'];
 			$title = $post['post_title'];
+
+			$this->origin->update_progress( null, ['wp-content_processed' => $this->processed]);
 		} elseif ( isset( $post['term_id'] ) ) {
 			/**
 			 * FIXME: We should fix it later, with a proper count of terms and make a total with post itself.
@@ -203,7 +211,8 @@ class WPContent extends BaseRunner {
 	}
 
 	public function update_total( $WPImport ) {
-		$contents = &$this->manifest['wp-content'];
+		$session_data = $this->origin->get_session_data();
+		$contents     = $session_data['imported_data']['wp-content_manifest_content'];
 
 		foreach ($WPImport->posts as $key => $post) {
 			$postType = $post['post_type'];
@@ -218,5 +227,6 @@ class WPContent extends BaseRunner {
 			return $carry + count( $item );
 		}, 0 );
 
+		$this->origin->update_progress( null, ['wp-content_manifest_content' => $contents]);
 	}
 }

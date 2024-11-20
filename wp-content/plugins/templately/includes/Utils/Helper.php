@@ -188,7 +188,7 @@ class Helper extends Base {
 	 * @return void
 	 */
 	public static function log( $log ){
-		if ( defined('WP_DEBUG_LOG') && WP_DEBUG_LOG === true ) {
+		if ( defined('WP_DEBUG_LOG') && WP_DEBUG_LOG ) {
 			if ( is_array( $log ) || is_object( $log ) ) {
 				error_log( print_r( $log, true ) );
 			} else {

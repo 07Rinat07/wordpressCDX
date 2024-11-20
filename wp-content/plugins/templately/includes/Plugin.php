@@ -38,7 +38,7 @@ use Templately\Core\Platform\Gutenberg;
 use Templately\Core\Platform\Elementor;
 
 final class Plugin extends Base {
-    public $version = '3.1.7';
+    public $version = '3.1.9';
 
 	public $admin;
 	/**

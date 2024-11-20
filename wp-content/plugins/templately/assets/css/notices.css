@@ -3,7 +3,7 @@
 .notice-templately-black_friday {
 	padding: 16px 0;
 }
-
+/*
 #wpnotice-templately-black_friday.notice-info {
 	border-left-color: #5633D1;
 }
@@ -33,23 +33,23 @@
 
 #wpnotice-templately-black_friday .wpnotice-content-wrapper button:hover {
 	background-color: transparent;
-}
+} */
 
-#wpnotice-templately-halloween.notice-info {
+#wpnotice-templately-halloween.notice-info, #wpnotice-templately-black_friday.notice-info {
 	padding: 10px 38px 10px 12px;
 	border-left-color: #5626E7;
 }
-#wpnotice-templately-halloween .wpnotice-content-wrapper {
+#wpnotice-templately-halloween .wpnotice-content-wrapper, #wpnotice-templately-black_friday .wpnotice-content-wrapper {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
 }
-#wpnotice-templately-halloween .wpnotice-content-wrapper p {
+#wpnotice-templately-halloween .wpnotice-content-wrapper p, #wpnotice-templately-black_friday .wpnotice-content-wrapper p {
     font-size: 14px;
 }
-#wpnotice-templately-halloween a.button.button-primary {
+#wpnotice-templately-halloween a.button.button-primary, #wpnotice-templately-black_friday a.button.button-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;

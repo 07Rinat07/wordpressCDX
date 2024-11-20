@@ -38,9 +38,9 @@ trait LogHelper {
 		// Log the data into debug log file
 		$this->debug_log( $data );
 
-		$log = get_transient( 'templately_fsi_log' ) ?: [];
+		$log = get_option( 'templately_fsi_log' ) ?: [];
 		$log[] = $data;
-		set_transient( 'templately_fsi_log', $log, 15 * MINUTE_IN_SECONDS );
+		update_option( 'templately_fsi_log', $log );
 
 		// if(Helper::should_flush()){
 		// 	echo "event: message\n";

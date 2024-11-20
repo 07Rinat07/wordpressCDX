@@ -1,5 +1,16 @@
 == Changelog ==
 
+= 3.1.9 – 20-11-2024 =
+Fixed: Issues with importing Gutenberg template images.
+Fixed: FSI progress counter accuracy during template imports.
+Few minor bug fixes & improvements
+
+= 3.1.8 – 14-11-2024 =
+Added: WordPress 6.7 compatibility.
+Fixed: FSI revert functionality was not working properly.
+Fixed: Issues with Essential Blocks asset generation for Gutenberg templates.
+Few minor bug fixes & improvements
+
 = 3.1.7 – 27-10-2024 =
 Added: option to set specific Headers and Footers for Pages or Posts.
 Fixed: resolved a fatal error when creating Single Product templates.

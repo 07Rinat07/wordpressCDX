@@ -122,16 +122,19 @@ class Utils extends Base {
 		return $templately_options;
 	}
 
-	public static function update_option( $key, $value, $autoload = 'no' ){
+	public static function backup_option_value($key, $autoload = 'no') {
 		$old_value = get_option($key);
-		if($old_value){
-			update_option( "__templately_$key", $old_value, $autoload );
+		if ($old_value) {
+			update_option("__templately_$key", $old_value, $autoload);
 		}
-		else{
-			add_option( "__templately_$key", $old_value, '', $autoload );
+		else {
+			add_option("__templately_$key", $old_value, '', $autoload);
 		}
+	}
 
-		return update_option( $key, $value, $autoload );
+	public static function update_option($key, $value, $autoload = 'no') {
+		self::backup_option_value($key, $autoload);
+		return update_option($key, $value, $autoload);
 	}
 
 	public static function import_page_settings( $id, $settings ) {
@@ -215,4 +218,44 @@ class Utils extends Base {
 			'url' => esc_url_raw(wp_get_attachment_url($id)),
 		];
 	}
+
+    /**
+     * Inserts a template into the Gutenberg editor.
+     *
+     * @param mixed $data
+     * @param int $postId
+     * @return array
+     */
+    public static function import_and_replace_attachments($content, $postId = 0) {
+        // Instantiate GutenbergHelper
+        $helper = new GutenbergHelper();
+
+		$data = [
+			'content' => $content,
+		];
+
+        // Organize URLs from the content
+        $organizedUrls = $helper->parse_images($data['content']);
+		if(empty($organizedUrls)){
+			return $content;
+		}
+
+        // Define template settings
+        $template_settings = [
+            'post_id'       => $postId,
+            '__attachments' => $organizedUrls,
+        ];
+
+        // Map post IDs and disable logging
+        $helper->map_post_ids[$postId] = $postId;
+        $helper->shouldLog = false;
+
+        // Prepare the helper with the data and settings
+        $helper->prepare($data, $template_settings);
+
+        // Update the content in the data array
+        $content = wp_unslash($helper->get_content());
+
+        return $content;
+    }
 }

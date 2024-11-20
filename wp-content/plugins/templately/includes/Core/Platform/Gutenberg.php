@@ -2,7 +2,7 @@
 namespace Templately\Core\Platform;
 
 use Templately\API\Import;
-use Templately\Core\Importer\Utils\GutenbergHelper;
+use Templately\Core\Importer\Utils\Utils;
 use Templately\Core\Platform;
 use Templately\Core\Module;
 use Templately\Utils\Helper;
@@ -135,7 +135,7 @@ class Gutenberg extends Platform {
 		}
 
 		if($inserted_ID){
-			$post_data 	  = $this->process_images($post_data, $inserted_ID);
+			$post_data['content'] = Utils::import_and_replace_attachments($post_data['content'], $inserted_ID);
 
 			// Update the post content with the processed images
 			$updated_post = array(
@@ -160,40 +160,8 @@ class Gutenberg extends Platform {
      * @return array
      */
     public function insert($data, $postId = 0) {
-        $data = $this->process_images($data, $postId);
+        $data['content'] = Utils::import_and_replace_attachments($data['content'], $postId);
         return $data;
     }
 
-    /**
-     * Inserts a template into the Gutenberg editor.
-     *
-     * @param mixed $data
-     * @param int $postId
-     * @return array
-     */
-    public function process_images($data, $postId = 0) {
-        // Instantiate GutenbergHelper
-        $helper = new GutenbergHelper();
-
-        // Organize URLs from the content
-        $organizedUrls = $helper->parse_images($data['content']);
-
-        // Define template settings
-        $template_settings = [
-            'post_id'       => $postId,
-            '__attachments' => $organizedUrls,
-        ];
-
-        // Map post IDs and disable logging
-        $helper->map_post_ids[$postId] = $postId;
-        $helper->shouldLog = false;
-
-        // Prepare the helper with the data and settings
-        $helper->prepare($data, $template_settings);
-
-        // Update the content in the data array
-        $data['content'] = wp_unslash($helper->get_content());
-
-        return $data;
-    }
 }

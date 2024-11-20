@@ -100,7 +100,7 @@ class FullSiteImport extends Base {
 		update_option(self::SESSION_OPTION_KEY, $data);
 
 		delete_option('templately_fsi_imported_list');
-		delete_transient('templately_fsi_log');
+		delete_option('templately_fsi_log');
 
 		wp_send_json_success([
 			'is_lightspeed' => !Helper::should_flush(),
@@ -333,7 +333,7 @@ class FullSiteImport extends Base {
 			exit;
 		}
 
-		// delete_transient( 'templately_fsi_log' );
+		// delete_option( 'templately_fsi_log' );
 
 		$this->sse_message( [
 			'type'    => 'start',
@@ -350,6 +350,7 @@ class FullSiteImport extends Base {
 
 			$this->request_params = $this->get_session_data();
 			$this->initialize_props();
+			$this->add_revert_hooks();
 			$progress = $this->request_params['progress'] ?? [];
 
 			$_id = isset($this->request_params['id']) ? (int) $this->request_params['id'] : null;
@@ -359,6 +360,12 @@ class FullSiteImport extends Base {
 			}
 
 			if(empty($progress['download_zip'])){
+				//clear previous revert backup
+				$options = Utils::get_backup_options();
+				foreach ($options as $key => $value) {
+					delete_option("__templately_$key");
+				}
+
 				/**
 				 * Check Writing Permission
 				 */
@@ -420,7 +427,7 @@ class FullSiteImport extends Base {
 			/**
 			 * Should Revert Old Data
 			 */
-			$this->revert();
+			// $this->revert();
 
 			/**
 			 * Platform Based Templates Import
@@ -445,7 +452,7 @@ class FullSiteImport extends Base {
 	}
 
 	public function import_status(){
-		$log = get_transient( 'templately_fsi_log' );
+		$log = get_option( 'templately_fsi_log' );
 
 		if(!empty($log) && is_array($log) && isset($_GET['lastLogIndex'])){
 			$lastLogIndex = (int) $_GET['lastLogIndex'];
@@ -1081,13 +1088,9 @@ class FullSiteImport extends Base {
 		add_action('registered_taxonomy', function ($taxonomy, $object_type, $taxonomy_object) {
 			$this->update_imported_list('taxonomy', $taxonomy);
 		}, 10, 3);
-
-		$options = Utils::get_backup_options();
-		if (!empty($options) && is_array($options)) {
-			foreach ($options as $key => $value) {
-				delete_option("__templately_$key");
-			}
-		}
+		add_action('fluentform/form_imported', function ($formId){
+			$this->update_imported_list('fluentform', $formId);
+		}, 10, 1);
 	}
 
 	public static function has_revert(){
@@ -1178,6 +1181,11 @@ class FullSiteImport extends Base {
 							break;
 						case 'taxonomy':
 							// Taxonomies cannot be directly deleted. Consider de-registering it.
+							break;
+						case 'fluentform':
+							if(class_exists('\FluentForm\App\Models\Form')){
+								\FluentForm\App\Models\Form::remove($item_id);
+							}
 							break;
 					}
 				}
