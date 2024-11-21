@@ -30,10 +30,10 @@
 esc_html__('Hello', 'wordpresscdx');
 esc_html_e('Hello', 'wordpresscdx');
 
-$city = "Uralsk";
-$country = "Kazahstan";
+// $city = "Uralsk";
+// $country = "Kazahstan";
 
-printf(esc_html__('My city is %1$s and my country is %2$s' , 'wordpresscdx'), $city, $country);
+// printf(esc_html__('My city is %1$s and my country is %2$s' , 'wordpresscdx'), $city, $country);
 
 ?>
 
