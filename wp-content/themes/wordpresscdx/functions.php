@@ -89,6 +89,13 @@ function wordpresscdx_register_post_type(){
 		'show_ui' => true, // включит в админ панеле внешний интерфейс
 		'show_in_menu' => true, //включит ссылку на новый посттайп
 		'has_archive' => true,
+		//'exclude_from_search' => false
+		'show_in_nav_menus' => false // эти опции откл или включают видимость в меню и в др разделах видимость раздела или подменю
+		//'show_in_admin_bar' => false,
+		//'menu_position' => 100,
+		//'menu_icon' => 'dashicons-welcome-writte-blog'
+
+
 	
 	);
 	register_post_type('car', $args);
