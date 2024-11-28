@@ -1934,3 +1934,47 @@ Stack trace:
 [27-Nov-2024 14:02:19 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "menu_icon", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 96
 [27-Nov-2024 14:02:20 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "menu_icon", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 96
 [27-Nov-2024 14:02:26 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "menu_icon", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 96
+[28-Nov-2024 05:43:32 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 05:43:36 UTC] Automatic updates starting...
+[28-Nov-2024 05:43:38 UTC] Automatic updates complete.
+[28-Nov-2024 05:44:11 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 08:31:11 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 12:02:49 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 12:09:51 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 12:37:16 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "hierarchical", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 104
+[28-Nov-2024 13:13:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function Elementor\Core\get_plugins() in C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\core\wp-api.php:26
+Stack trace:
+#0 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\modules\compatibility-tag\base-module.php(96): Elementor\Core\Wp_Api->get_plugins()
+#1 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\modules\compatibility-tag\base-module.php(58): Elementor\Modules\CompatibilityTag\Base_Module->get_plugins_with_header()
+#2 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\modules\compatibility-tag\module.php(57): Elementor\Modules\CompatibilityTag\Base_Module->get_plugins_to_check()
+#3 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\modules\compatibility-tag\base-module.php(148): Elementor\Modules\CompatibilityTag\Module->get_plugins_to_check()
+#4 C:\OSPanel\home\wordpressCDX\wp-includes\class-wp-hook.php(324): Elementor\Modules\CompatibilityTag\Base_Module->Elementor\Modules\CompatibilityTag\{closure}('')
+#5 C:\OSPanel\home\wordpressCDX\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#6 C:\OSPanel\home\wordpressCDX\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#7 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\modules\system-info\module.php(338): do_action('elementor/syste...')
+#8 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\includes\tracker.php(241): Elementor\Modules\System_Info\Module::get_allowed_reports()
+#9 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\includes\tracker.php(540): Elementor\Tracker::get_system_reports_data()
+#10 C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\includes\tracker.php(141): Elementor\Tracker::get_tracking_data(false)
+#11 C:\OSPanel\home\wordpressCDX\wp-includes\class-wp-hook.php(324): Elementor\Tracker::send_tracking_data()
+#12 C:\OSPanel\home\wordpressCDX\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#13 C:\OSPanel\home\wordpressCDX\wp-includes\plugin.php(565): WP_Hook->do_action(Array)
+#14 C:\OSPanel\home\wordpressCDX\wp-cron.php(191): do_action_ref_array('elementor/track...', Array)
+#15 {main}
+  thrown in C:\OSPanel\home\wordpressCDX\wp-content\plugins\elementor\core\wp-api.php on line 26
+[28-Nov-2024 15:07:13 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 63
+[28-Nov-2024 15:07:13 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>wordpresscdx</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 15:07:13 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\OSPanel\home\wordpressCDX\wp-includes\class-wp-recovery-mode-email-service.php on line 367
+[28-Nov-2024 15:07:13 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\OSPanel\home\wordpressCDX\wp-includes\class-wp-recovery-mode-email-service.php on line 368
+[28-Nov-2024 15:15:10 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 15:18:12 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "rewrite", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 114
+[28-Nov-2024 15:18:17 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "rewrite", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 114
+[28-Nov-2024 15:18:51 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "rewrite", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 114
+[28-Nov-2024 15:32:01 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 15:32:06 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[28-Nov-2024 15:33:14 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "rewrite", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 115
+[28-Nov-2024 15:38:02 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "show_in_rest", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 115
+[28-Nov-2024 15:40:03 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "show_in_rest", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 115
+[28-Nov-2024 15:40:16 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "show_in_rest", expecting ")" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 115
+[28-Nov-2024 16:08:39 UTC] Automatic updates starting...
+[28-Nov-2024 16:08:40 UTC] Automatic updates complete.
+[28-Nov-2024 16:30:47 UTC] PHP Parse error:  syntax error, unexpected token "if" in C:\OSPanel\home\wordpressCDX\wp-content\themes\wordpresscdx\functions.php on line 138

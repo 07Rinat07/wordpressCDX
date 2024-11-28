@@ -29,12 +29,15 @@ add_action('wp_enqueue_scripts', 'wordpresscdx_enqueue_scripts' );
 
 
 function wordpresscdx_theme_init(){
+
+	//регистрация локаций меню
 	register_nav_menus(array(
 		'header_nav' => 'Header Navigation',    // for example Hard code
 		'footer_nav' => 'Footer Navigation'
 	));
 
 
+	//поддержка тегов
 	add_theme_support(
 		'html5',
 		array(
@@ -47,7 +50,20 @@ function wordpresscdx_theme_init(){
 			'script',
 		)
 	);
+	//поддержка многоязычности
 	load_theme_textdomain('wordpresscdx', get_template_directory(). '/languages');
+
+	//поддержка тумб
+	add_theme_support( 'post-thumbnails' );
+
+	add_theme_support('post-formats',
+	array(
+		'video',
+		'quote',
+		'image',
+		'gallery'
+	));
+	add_post_type_support('car', 'post-formats');
 }
 add_action('after_setup_theme', 'wordpresscdx_theme_init', 0);
 
@@ -83,7 +99,7 @@ function wordpresscdx_register_post_type(){
 		'items_list_navigation' => esc_html_x( 'Cars list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'textdomain' ),
 		'items_list'            => esc_html_x( 'Cars list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'textdomain' ),
 		),
-		'supports' => array('title', 'editor', 'author', 'thumbnail'),
+		'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions', 'post-format'),
 		'public' => true,
 		'public_queryable' => true, //сдеелает во фронте отображение по ссылке
 		'show_ui' => true, // включит в админ панеле внешний интерфейс
@@ -93,8 +109,11 @@ function wordpresscdx_register_post_type(){
 		'show_in_nav_menus' => false // эти опции откл или включают видимость в меню и в др разделах видимость раздела или подменю
 		//'show_in_admin_bar' => false,
 		//'menu_position' => 100,
-		//'menu_icon' => 'dashicons-welcome-writte-blog'
-
+		//'menu_icon' => 'dashicons-welcome-writte-blog',
+		//'hierarchical' => true,
+		//'rewrite' => array('slug' => 'cars')
+		//'show_in_rest' => true //вкл гутенберг в новом посттайпе
+		
 
 	
 	);
@@ -103,6 +122,12 @@ function wordpresscdx_register_post_type(){
 }
 add_action('init', 'wordpresscdx_register_post_type');
 
+//этот хук нужен при каждой регистрацией посттайпа
+function wordpresscdx_rewrite_rules(){
+	wordpresscdx_register_post_type();
+	flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'wordpresscdx_rewrite_rules');
 
 
 
@@ -141,9 +166,6 @@ function wordpresscdx_setup() {
 		*
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
-	add_theme_support( 'post-thumbnails' );
-
-
 
 
 	// Set up the WordPress core custom background feature.
