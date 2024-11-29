@@ -74,48 +74,40 @@ function wordpresscdx_register_post_type(){
 	$args = array(
 		'label' => esc_html__('Cars', 'wordpresscdx'),
 		'labels' => array(
-			'name'                  => esc_html_x( 'Cars', 'Post type general name', 'textdomain' ),
-		'singular_name'         => esc_html_x( 'Car', 'Post type singular name', 'textdomain' ),
-		'menu_name'             => esc_html_x( 'Cars', 'Admin Menu text', 'textdomain' ),
-		'name_admin_bar'        => esc_html_x( 'Car', 'Add New on Toolbar', 'textdomain' ),
-		'add_new'               => esc_html__( 'Add New', 'textdomain' ),
-		'add_new_item'          => esc_html__( 'Add New Car', 'textdomain' ),
-		'new_item'              => esc_html__( 'New Car', 'textdomain' ),
-		'edit_item'             => esc_html__( 'Edit Car', 'textdomain' ),
-		'view_item'             => esc_html__( 'View Car', 'textdomain' ),
-		'all_items'             => esc_html__( 'All Cars', 'textdomain' ),
-		'search_items'          => esc_html__( 'Search Cars', 'textdomain' ),
-		'parent_item_colon'     => esc_html__( 'Parent Cars:', 'textdomain' ),
-		'not_found'             => esc_html__( 'No Cars found.', 'textdomain' ),
-		'not_found_in_trash'    => esc_html__( 'No Cars found in Trash.', 'textdomain' ),
-		'featured_image'        => esc_html_x( 'Car Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'textdomain' ),
-		'set_featured_image'    => esc_html_x( 'Set cover image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
-		'remove_featured_image' => esc_html_x( 'Remove cover image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
-		'use_featured_image'    => esc_html_x( 'Use as cover image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
-		'archives'              => esc_html_x( 'Car archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'textdomain' ),
-		'insert_into_item'      => esc_html_x( 'Insert into Car', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'textdomain' ),
-		'uploaded_to_this_item' => esc_html_x( 'Uploaded to this Car', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'textdomain' ),
-		'filter_items_list'     => esc_html_x( 'Filter Cars list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'textdomain' ),
-		'items_list_navigation' => esc_html_x( 'Cars list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'textdomain' ),
-		'items_list'            => esc_html_x( 'Cars list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'textdomain' ),
+			'name'                  => esc_html_x('Cars', 'Post type general name', 'wordpresscdx'),
+			'singular_name'         => esc_html_x('Car', 'Post type singular name', 'wordpresscdx'),
+			'menu_name'             => esc_html_x('Cars', 'Admin Menu text', 'wordpresscdx'),
+			'name_admin_bar'        => esc_html_x('Car', 'Add New on Toolbar', 'wordpresscdx'),
+			'add_new'               => esc_html__('Add New', 'wordpresscdx'),
+			'add_new_item'          => esc_html__('Add New Car', 'wordpresscdx'),
+			'new_item'              => esc_html__('New Car', 'wordpresscdx'),
+			'edit_item'             => esc_html__('Edit Car', 'wordpresscdx'),
+			'view_item'             => esc_html__('View Car', 'wordpresscdx'),
+			'all_items'             => esc_html__('All Cars', 'wordpresscdx'),
+			'search_items'          => esc_html__('Search Cars', 'wordpresscdx'),
+			'parent_item_colon'     => esc_html__('Parent Cars:', 'wordpresscdx'),
+			'not_found'             => esc_html__('No Cars found.', 'wordpresscdx'),
+			'not_found_in_trash'    => esc_html__('No Cars found in Trash.', 'wordpresscdx'),
+			'featured_image'        => esc_html_x('Car Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'wordpresscdx'),
+			'set_featured_image'    => esc_html_x('Set cover image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'wordpresscdx'),
+			'remove_featured_image' => esc_html_x('Remove cover image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'wordpresscdx'),
+			'use_featured_image'    => esc_html_x('Use as cover image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'wordpresscdx'),
+			'archives'              => esc_html_x('Car archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'wordpresscdx'),
+			'insert_into_item'      => esc_html_x('Insert into Car', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'wordpresscdx'),
+			'uploaded_to_this_item' => esc_html_x('Uploaded to this Car', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'wordpresscdx'),
+			'filter_items_list'     => esc_html_x('Filter Cars list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'wordpresscdx'),
+			'items_list_navigation' => esc_html_x('Cars list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'wordpresscdx'),
+			'items_list'            => esc_html_x('Cars list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'wordpresscdx'),
 		),
 		'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions', 'post-format'),
 		'public' => true,
-		'public_queryable' => true, //сдеелает во фронте отображение по ссылке
-		'show_ui' => true, // включит в админ панеле внешний интерфейс
-		'show_in_menu' => true, //включит ссылку на новый посттайп
-		'has_archive' => true,
-		//'exclude_from_search' => false
-		'show_in_nav_menus' => false // эти опции откл или включают видимость в меню и в др разделах видимость раздела или подменю
-		//'show_in_admin_bar' => false,
-		//'menu_position' => 100,
-		//'menu_icon' => 'dashicons-welcome-writte-blog',
-		//'hierarchical' => true,
-		//'rewrite' => array('slug' => 'cars')
-		//'show_in_rest' => true //вкл гутенберг в новом посттайпе
-		
-
-	
+		'public_queryable' => true, // Отображение во фронте
+		'show_ui' => true, // Интерфейс в админке
+		'show_in_menu' => true, // Включение ссылки на посттайп
+		'has_archive' => true, // Архив записей
+		'rewrite' => array('slug' => 'cars'), // Установка URL для посттайпа
+		'show_in_nav_menus' => false, // Видимость в меню
+		'show_in_rest' => true, // Поддержка Gutenberg
 	);
 	register_post_type('car', $args);
 
