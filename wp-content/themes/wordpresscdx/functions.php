@@ -71,6 +71,32 @@ add_action('after_setup_theme', 'wordpresscdx_theme_init', 0);
 
 
 function wordpresscdx_register_post_type(){
+
+	$args = array(
+		'hierarchical' => false,
+		'labels' => array(
+			'name'              => esc_html_x( 'Brands', 'taxonomy general name', 'wordpresscdx' ),
+		'singular_name'     => esc_html_x( 'Brand', 'taxonomy singular name', 'wordpresscdx' ),
+		'search_items'      => esc_html__( 'Search Brands', 'wordpresscdx' ),
+		'all_items'         => esc_html__( 'All Brands', 'wordpresscdx' ),
+		'parent_item'       => esc_html__( 'Parent Brand', 'wordpresscdx' ),
+		'parent_item_colon' => esc_html__( 'Parent Brand:', 'wordpresscdx' ),
+		'edit_item'         => esc_html__( 'Edit Brand', 'wordpresscdx' ),
+		'update_item'       => esc_html__( 'Update Brand', 'wordpresscdx' ),
+		'add_new_item'      => esc_html__( 'Add New Brand', 'wordpresscdx' ),
+		'new_item_name'     => esc_html__( 'New Brand Name', 'wordpresscdx' ),
+		'menu_name'         => esc_html__( 'Brand', 'wordpresscdx' ),
+		),
+		'show_ui' => true,
+		'rewrite' => array('slug'=>'brands'),
+		'query_var' => true,
+		'show_in_rest' => true, 
+	);
+	register_taxonomy('brand', array('car'), $args);
+
+	unset($args); 
+
+
 	$args = array(
 		'label' => esc_html__('Cars', 'wordpresscdx'),
 		'labels' => array(
@@ -110,6 +136,7 @@ function wordpresscdx_register_post_type(){
 		'show_in_rest' => true, // Поддержка Gutenberg
 	);
 	register_post_type('car', $args);
+
 
 }
 add_action('init', 'wordpresscdx_register_post_type');
@@ -248,7 +275,7 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
+if ( defined( 'JETPACKesc_html__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
