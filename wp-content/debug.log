@@ -2340,3 +2340,12 @@ Stack trace:
 [30-Nov-2024 15:16:22 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
 [30-Nov-2024 16:07:20 UTC] Automatic updates starting...
 [30-Nov-2024 16:07:22 UTC] Automatic updates complete.
+[05-Dec-2024 08:33:00 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[05-Dec-2024 08:33:03 UTC] Automatic updates starting...
+[05-Dec-2024 08:33:04 UTC]   Automatic plugin updates starting...
+[05-Dec-2024 08:33:04 UTC]   Automatic plugin updates complete.
+[05-Dec-2024 08:33:04 UTC] Automatic updates complete.
+[05-Dec-2024 08:33:10 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[05-Dec-2024 08:33:10 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[05-Dec-2024 08:33:10 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
+[05-Dec-2024 08:33:10 UTC] PHP Deprecated:  Function the_block_template_skip_link is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_block_template_skip_link() instead. in C:\OSPanel\home\wordpressCDX\wp-includes\functions.php on line 6114
