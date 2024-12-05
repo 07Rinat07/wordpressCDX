@@ -65,5 +65,5 @@ get_header();
 
 
 <?php
-//get_sidebar();
+get_sidebar('cars');
 get_footer();

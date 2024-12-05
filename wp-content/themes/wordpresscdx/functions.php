@@ -11,6 +11,33 @@
  * wordpresscdx -и функцию там назвал тему вот поэтому пожключение сделал 
  * с таким названием как название темы.
  */
+function wordpresscdx_widgets_init() {
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Sidebar', 'wordpresscdx' ),
+			'id'            => 'sidebar-1',
+			'description'   => esc_html__( 'Add widgets here.', 'wordpresscdx' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Car Pages Sidebar', 'wordpresscdx' ),
+			'id'            => 'carssidebar',
+			'description'   => esc_html__( 'Appear as a Sidebar on Car Pages', 'wordpresscdx' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+}
+add_action( 'widgets_init', 'wordpresscdx_widgets_init' );
+
 
 function wordpresscdx_enqueue_scripts(){
 	
@@ -236,20 +263,7 @@ add_action( 'after_setup_theme', 'wordpresscdx_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function wordpresscdx_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'wordpresscdx' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'wordpresscdx' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'wordpresscdx_widgets_init' );
+
 
 
 /**
